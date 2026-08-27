@@ -1,114 +1,114 @@
 # Antigravity Doctor
 
-A lightweight, cross-platform diagnostic utility designed to inspect, validate, and troubleshoot local Antigravity environments, including Antigravity 2.0 (Desktop), Antigravity IDE (VS Code fork), the `agy` CLI agent, and associated network routing/DNS infrastructure.
+Кроссплатформенная диагностическая утилита для проверки, валидации и устранения неполадок в локальном окружении Antigravity, включая Antigravity 2.0 (Desktop), Antigravity IDE (модифицированный форк VS Code), консольный агент agy и сетевую маршрутизацию DNS/NRPT.
 
-Built on Neutralino.js (native C++ core and OS-native webview) to deliver near-zero idle GPU load, negligible RAM overhead (~20 MB), and instantaneous start times.
-
----
-
-## Key Capabilities
-
-- **Automated 16-Point Verification Matrix:** Executes deep structural, memory, binary, and network checks across all core toolchain layers.
-- **5-Level Smart Path Discovery:** Automatically resolves installation roots via running process memory inspection, Windows Registry query, desktop/Start menu shortcut analysis, drive root scanning, or user override.
-- **Binary Signature Inspection:** Verifies Language Server binaries (`language_server.exe`) and CLI executables (`agy.exe`) for active patch signatures (`inexigible` vs `ineligible`).
-- **Network & DNS Gateway Diagnostics:** Validates Windows Name Resolution Policy Table (NRPT) rules, Cloud Code gateway DNS resolution, Google OAuth endpoints, and TLS handshake latency.
-- **One-Click Support Log Generation:** Compiles structured, anonymized diagnostic reports formatted for direct submission to community support channels (`t.me/nova_txt`).
-- **Zero GPU Overhead:** Pure DOM rendering without heavy animation loops or WebGL contexts.
+Построена на базе Neutralino.js (нативное ядро на C++ и системный WebView ОС) с нулевой фоновой нагрузкой на GPU, минимальным потреблением оперативной памяти (~20 МБ) и мгновенным запуском.
 
 ---
 
-## Diagnostic Matrix Breakdown
+## Основные возможности
 
-| Component | Check | Description |
+- **16-точечная матрица верификации:** детальная проверка окружения, прав, активных процессов, байтовых сигнатур бинарников и сетевых шлюзов.
+- **5-уровневый умный поиск путей:** автоматическое определение директорий установки через анализ запущенных процессов, чтение реестра Windows (HKCU/HKLM), сканирование системных переменных (%LOCALAPPDATA%, %APPDATA%, %USERPROFILE%), ярлыков и корней доступных дисков.
+- **Сигнатурный анализ бинарных патчей:** проверка исполняемых файлов Language Server (language_server.exe) и CLI (agy.exe) на наличие активных сигнатур обхода (inexigible против ineligible).
+- **Диагностика сетевого шлюза и DNS:** проверка наличия правил в таблице NRPT (Name Resolution Policy Table), резолвинга шлюза Cloud Code, серверов авторизации Google OAuth и замера времени TLS Handshake.
+- **Экспорт отчета для поддержки:** формирование структурированного и анонимизированного технического лога в 1 клик для отправки в Telegram (t.me/nova_txt).
+- **0% нагрузки на GPU:** чистый легковесный DOM-рендеринг без ресурсоемких циклов анимации и контекстов WebGL.
+
+---
+
+## Матрица проверок
+
+| Компонент | Проверка | Описание |
 | :--- | :--- | :--- |
-| **Environment** | Process Elevation | Validates administrative execution via High Mandatory Level SID (`S-1-16-12288`). |
-| | System Variables | Checks for conflicting `HTTP_PROXY` / `HTTPS_PROXY` configurations. |
-| **Antigravity 2.0** | Install Path Resolution | Discovers installation root via 5-tier resolution engine. |
-| | Process Status | Determines whether `antigravity.exe` is actively running. |
-| | Language Server Patch | Inspects binary for the `inexigible` signature. |
-| **Antigravity IDE** | Install Path Resolution | Locates `Antigravity IDE` installation directory. |
-| | Process Status | Inspects running IDE processes. |
-| | Language Server Patch | Checks `resources/app/bin/language_server.exe` binary patch state. |
-| | Endpoint Settings | Inspects `settings.json` for `daily-cloudcode-pa.googleapis.com` configuration. |
-| **Antigravity CLI** | Binary Resolution | Resolves `agy.exe` executable from `PATH` and default user directories. |
-| | Binary Patch | Analyzes `agy.exe` signature integrity. |
-| | Environment Variable | Validates presence and accuracy of `CLOUD_CODE_URL`. |
-| **Network & DNS** | NRPT Policy Table | Queries active Windows NRPT rules for `daily-cloudcode-pa` routing. |
-| | DNS Resolution (Gateway) | Resolves `daily-cloudcode-pa.googleapis.com` against active DNS servers. |
-| | DNS Resolution (OAuth) | Confirms domain resolution for `oauth2.googleapis.com`. |
-| | TLS Handshake & Latency | Measures end-to-end handshake time and HTTP accessibility. |
+| **Окружение** | Привилегии процесса | Проверка запуска от имени Администратора через SID High Mandatory Level (S-1-16-12288). |
+| | Переменные окружения | Выявление конфликтующих прокси-серверов в HTTP_PROXY / HTTPS_PROXY. |
+| **Antigravity 2.0** | Поиск директории установки | Определение пути через 5-уровневый алгоритм поиска. |
+| | Статус процесса | Проверка активности процесса antigravity.exe в памяти. |
+| | Патч Language Server | Поиск сигнатуры inexigible в бинарнике Language Server. |
+| **Antigravity IDE** | Поиск директории установки | Определение пути установки Antigravity IDE. |
+| | Статус процесса | Проверка активности процесса IDE в памяти. |
+| | Патч Language Server | Анализ байтовой сигнатуры resources/app/bin/language_server.exe. |
+| | Настройки эндпоинта | Проверка переопределения эндпоинта в settings.json. |
+| **Antigravity CLI** | Поиск бинарника agy | Поиск agy.exe в путях PATH и пользовательских директориях. |
+| | Патч бинарника | Проверка целостности и сигнатуры файла agy.exe. |
+| | Переменная окружения | Валидация наличия и значения переменной CLOUD_CODE_URL. |
+| **Сеть и DNS** | Таблица правил NRPT | Проверка активных правил маршрутизации Windows для daily-cloudcode-pa. |
+| | DNS-резолвинг шлюза | Разрешение доменного имени daily-cloudcode-pa.googleapis.com. |
+| | DNS-резолвинг OAuth | Проверка доступности серверов авторизации oauth2.googleapis.com. |
+| | TLS Handshake и отклик | Замер времени установки соединения и проверка доступности HTTP/2 шлюза. |
 
 ---
 
-## System Requirements
+## Системные требования
 
-- **Windows:** Windows 10 or Windows 11 (64-bit). Uses Microsoft Edge WebView2 runtime (preinstalled on modern Windows).
-- **macOS:** macOS 11.0 (Big Sur) or newer (Apple Silicon & Intel supported natively).
-- **Linux:** Any modern x86_64 or ARM64 distribution with WebKitGTK (`webkit2gtk-4.0` / `webkit2gtk-4.1`).
-
----
-
-## Quick Start
-
-### Running Pre-Built Executables
-
-1. Download the latest release archive for your platform from the Releases tab.
-2. Extract the archive contents ensuring `resources.neu` remains in the same directory as the executable.
-3. Launch the binary:
-   - **Windows:** `antigravity-doctor-win_x64.exe` (Run as Administrator for full NRPT and binary inspection access).
-   - **macOS:** `antigravity-doctor-mac_universal`
-   - **Linux:** `./antigravity-doctor-linux_x64`
+- **Windows:** Windows 10 или Windows 11 (64-бит). Используется системный компонент Microsoft Edge WebView2.
+- **macOS:** macOS 11.0 (Big Sur) или новее (нативная поддержка Apple Silicon M1/M2/M3/M4 и процессоров Intel).
+- **Linux:** любой современный дистрибутив x86_64 или ARM64 с установленным пакетом WebKitGTK (webkit2gtk-4.0 / webkit2gtk-4.1).
 
 ---
 
-## Building From Source
+## Быстрый запуск (Готовые бинарники)
 
-### Prerequisites
+1. Скачайте архив для вашей операционной системы со страницы Releases:
+   - **Windows:** antigravity-doctor-windows-x64.zip
+   - **macOS:** antigravity-doctor-macos-app.zip
+   - **Linux:** antigravity-doctor-linux-x64.zip
+2. Распакуйте архив в любую папку.
+3. Запустите приложение:
+   - **Windows:** дважды кликните по antigravity-doctor-win_x64.exe (рекомендуется запуск от имени Администратора).
+   - **macOS:** дважды кликните по приложению Antigravity Doctor.app.
+   - **Linux:** дважды кликните по ярлыку Antigravity Doctor.desktop или выполните ./start.sh.
 
-- Node.js (v18.0 or newer)
-- npm or npx
+---
 
-### Build Instructions
+## Сборка из исходного кода
+
+### Требования
+- Node.js (версия 18.0 или выше)
+- npm или npx
+
+### Инструкция по сборке
 
 ```bash
-# 1. Clone the repository
-git clone https://github.com/your-username/antigravity-doctor.git
+# 1. Клонирование репозитория
+git clone https://github.com/ВАШ_ЛОГИН/antigravity-doctor.git
 cd antigravity-doctor
 
-# 2. Run in development mode
+# 2. Запуск в режиме разработки
 npx @neutralinojs/neu run
 
-# 3. Build standalone multi-platform distribution packages
+# 3. Сборка исполняемых файлов для всех платформ
 npx @neutralinojs/neu build
 ```
 
-Compiled distribution packages are generated inside the `dist/antigravity-doctor/` directory containing standalone binaries for Windows, macOS (Universal, ARM64, Intel), and Linux (x64, ARM64, ARMhf).
+Собранные бинарники для Windows, macOS и Linux формируются в директории dist/antigravity-doctor/.
 
 ---
 
-## Project Structure
+## Структура проекта
 
 ```
 antigravity-doctor/
 ├── .github/
 │   └── workflows/
-│       └── release.yml        # Multi-platform GitHub Actions release workflow
-├── bin/                       # Neutralino pre-built native runtime binaries
+│       └── release.yml        # CI/CD сборка релизов для GitHub Actions
+├── bin/                       # Нативные рантаймы Neutralino
 ├── resources/
-│   ├── index.html             # High-density dashboard markup
-│   ├── styles.css             # Matte graphite styling (Montserrat + Roboto)
+│   ├── index.html             # Разметка интерфейса
+│   ├── styles.css             # Стили оформления (Montserrat и Roboto)
 │   ├── js/
-│   │   ├── app.js             # Diagnostic engine, path resolution, and reporting
-│   │   └── neutralino.js      # Neutralino.js client library
-│   └── icons/                 # Application icons
-├── neutralino.config.json     # Application configuration and native API permissions
-├── package.json               # Project metadata and build scripts
-├── LICENSE                    # MIT License
-└── README.md
+│   │   ├── app.js             # Движок 16 проверок и поиск путей
+│   │   └── neutralino.js      # Клиентская библиотека Neutralino.js
+│   └── icons/                 # Иконки приложения
+├── neutralino.config.json     # Конфигурация и права доступа к Native API
+├── package.json               # Манифест проекта и скрипты
+├── LICENSE                    # Лицензия MIT
+└── README.md                  # Документация проекта
 ```
 
 ---
 
-## License
+## Лицензия
 
-This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
+Проект распространяется под открытой лицензией MIT. Подробности в файле [LICENSE](LICENSE).
