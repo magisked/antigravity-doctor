@@ -1,0 +1,54 @@
+{
+  "$schema": "https://raw.githubusercontent.com/neutralinojs/neutralinojs/main/schemas/neutralino.config.schema.json",
+  "applicationId": "com.novatxt.antigravitydoctor",
+  "version": "1.0.0",
+  "defaultMode": "window",
+  "port": 0,
+  "documentRoot": "/resources/",
+  "url": "/",
+  "enableServer": true,
+  "enableNativeAPI": true,
+  "tokenSecurity": "one-time",
+  "logging": {
+    "enabled": false,
+    "writeToLogFile": false
+  },
+  "nativeAllowList": [
+    "app.*",
+    "os.*",
+    "computer.*",
+    "filesystem.*",
+    "storage.*",
+    "clipboard.*",
+    "debug.*",
+    "window.*",
+    "events.*"
+  ],
+  "modes": {
+    "window": {
+      "title": "Antigravity Doctor",
+      "width": 1040,
+      "height": 700,
+      "minWidth": 880,
+      "minHeight": 580,
+      "center": true,
+      "fullScreen": false,
+      "alwaysOnTop": false,
+      "icon": "/resources/icons/appIcon.png",
+      "enableInspector": false,
+      "borderless": false,
+      "maximize": false,
+      "hidden": false,
+      "resizable": true,
+      "exitProcessOnClose": true
+    }
+  },
+  "cli": {
+    "binaryName": "antigravity-doctor",
+    "resourcesPath": "/resources/",
+    "extensionsPath": "/extensions/",
+    "clientLibrary": "/resources/js/neutralino.js",
+    "binaryVersion": "6.9.0",
+    "clientVersion": "6.9.0"
+  }
+}

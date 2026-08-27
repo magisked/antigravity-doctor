@@ -1,0 +1,21 @@
+{
+  "name": "antigravity-doctor",
+  "version": "1.0.0",
+  "description": "Cross-platform diagnostic tool for Antigravity Desktop, IDE, CLI, and network routing",
+  "private": true,
+  "scripts": {
+    "start": "neu run",
+    "build": "neu build"
+  },
+  "keywords": [
+    "antigravity",
+    "diagnostics",
+    "troubleshooting",
+    "neutralino",
+    "cross-platform"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@neutralinojs/neu": "^11.7.2"
+  }
+}

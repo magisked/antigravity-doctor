@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antigravity Doctor</title>
+    <!-- Modern Google Fonts: Montserrat & Roboto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- 1. LEFT SIDEBAR -->
+        <aside class="sidebar">
+            <div class="logo-box">
+                <div class="logo-badge">AD</div>
+            </div>
+
+            <nav class="nav-menu">
+                <button class="nav-item active" data-tab="dashboard">
+                    <svg class="nav-icon" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                    <span>ДАШБОРД</span>
+                </button>
+                <button class="nav-item" data-tab="checks">
+                    <svg class="nav-icon" viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+                    <span>ПРОВЕРКИ</span>
+                </button>
+                <button class="nav-item" data-tab="network">
+                    <svg class="nav-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                    <span>СЕТЬ & DNS</span>
+                </button>
+                <button class="nav-item" data-tab="report">
+                    <svg class="nav-icon" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                    <span>ОТЧЕТ</span>
+                </button>
+                <button class="nav-item" data-tab="settings">
+                    <svg class="nav-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                    <span>ПУТИ</span>
+                </button>
+            </nav>
+
+            <div class="sidebar-footer">
+                <span class="version-label">v1.0.0</span>
+            </div>
+        </aside>
+
+        <!-- 2. MAIN CONTENT -->
+        <main class="main-content">
+            <!-- Top Status Bar -->
+            <header class="top-bar">
+                <div class="top-meta">
+                    <div class="os-tag" id="os-status-box">
+                        <span id="os-status-text">Загрузка системы...</span>
+                    </div>
+                </div>
+                <div class="top-actions">
+                    <span class="badge badge-neutral" id="admin-badge">Проверка...</span>
+                    <button class="btn btn-primary" id="btn-run-diag">Запустить диагностику</button>
+                </div>
+            </header>
+
+            <div class="progress-bar-container hidden" id="diag-progress">
+                <div class="progress-bar-indeterminate"></div>
+            </div>
+
+            <!-- VIEW CONTAINER -->
+            <div class="view-content">
+                <!-- TAB 1: DASHBOARD -->
+                <section class="tab-view active" id="view-dashboard">
+                    <div class="dashboard-grid">
+                        <!-- Left: 3 Product Cards -->
+                        <div class="products-column">
+                            <!-- Card 1: Desktop 2.0 -->
+                            <div class="card product-card">
+                                <div class="product-header">
+                                    <div class="product-identity">
+                                        <div class="app-icon icon-blue">AG</div>
+                                        <div>
+                                            <h3 class="product-title">Antigravity 2.0</h3>
+                                            <p class="product-sub">Desktop приложение</p>
+                                        </div>
+                                    </div>
+                                    <span class="badge badge-neutral" id="badge-desktop">ОЖИДАНИЕ</span>
+                                </div>
+                                <div class="product-props">
+                                    <div class="prop-row">
+                                        <span class="prop-label">ПУТЬ УСТАНОВКИ:</span>
+                                        <span class="prop-val mono" id="val-desktop-path">—</span>
+                                    </div>
+                                    <div class="prop-row">
+                                        <span class="prop-label">LANGUAGE SERVER:</span>
+                                        <span class="prop-val highlight" id="val-desktop-patch">—</span>
+                                    </div>
+                                    <div class="prop-row">
+                                        <span class="prop-label">ПРОЦЕСС:</span>
+                                        <span class="prop-val" id="val-desktop-process">—</span>
+                                    </div>
+                                </div>
+                                <div class="product-tags">
+                                    <span class="tag">DESKTOP</span>
+                                    <span class="tag" id="tag-desktop-ver">VER: 2.0</span>
+                                </div>
+                            </div>
+
+                            <!-- Card 2: IDE -->
+                            <div class="card product-card">
+                                <div class="product-header">
+                                    <div class="product-identity">
+                                        <div class="app-icon icon-purple">IDE</div>
+                                        <div>
+                                            <h3 class="product-title">Antigravity IDE</h3>
+                                            <p class="product-sub">Среда разработки</p>
+                                        </div>
+                                    </div>
+                                    <span class="badge badge-neutral" id="badge-ide">ОЖИДАНИЕ</span>
+                                </div>
+                                <div class="product-props">
+                                    <div class="prop-row">
+                                        <span class="prop-label">ПУТЬ УСТАНОВКИ:</span>
+                                        <span class="prop-val mono" id="val-ide-path">—</span>
+                                    </div>
+                                    <div class="prop-row">
+                                        <span class="prop-label">LANGUAGE SERVER:</span>
+                                        <span class="prop-val" id="val-ide-patch">—</span>
+                                    </div>
+                                    <div class="prop-row">
+                                        <span class="prop-label">ЭНДПОИНТ SETTINGS:</span>
+                                        <span class="prop-val highlight" id="val-ide-settings">—</span>
+                                    </div>
+                                </div>
+                                <div class="product-tags">
+                                    <span class="tag">IDE</span>
+                                    <span class="tag">CODE-SERVER</span>
+                                </div>
+                            </div>
+
+                            <!-- Card 3: CLI -->
+                            <div class="card product-card">
+                                <div class="product-header">
+                                    <div class="product-identity">
+                                        <div class="app-icon icon-amber">CLI</div>
+                                        <div>
+                                            <h3 class="product-title">Antigravity CLI</h3>
+                                            <p class="product-sub">Консольный агент agy</p>
+                                        </div>
+                                    </div>
+                                    <span class="badge badge-neutral" id="badge-cli">ОЖИДАНИЕ</span>
+                                </div>
+                                <div class="product-props">
+                                    <div class="prop-row">
+                                        <span class="prop-label">ФАЙЛ AGY:</span>
+                                        <span class="prop-val mono" id="val-cli-path">—</span>
+                                    </div>
+                                    <div class="prop-row">
+                                        <span class="prop-label">ПАТЧ БИНАРНИКА:</span>
+                                        <span class="prop-val" id="val-cli-patch">—</span>
+                                    </div>
+                                    <div class="prop-row">
+                                        <span class="prop-label">ПЕРЕМЕННАЯ ОКРУЖЕНИЯ:</span>
+                                        <span class="prop-val highlight" id="val-cli-env">—</span>
+                                    </div>
+                                </div>
+                                <div class="product-tags">
+                                    <span class="tag">CLI</span>
+                                    <span class="tag">AGY</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right: Infra & Recommendations -->
+                        <div class="side-column">
+                            <div class="card infra-card">
+                                <h4 class="card-heading">Сетевой шлюз & DNS</h4>
+                                <div class="infra-metrics">
+                                    <div class="metric-item">
+                                        <span class="metric-label">Правила NRPT:</span>
+                                        <span class="metric-val" id="metric-nrpt">Ожидание</span>
+                                    </div>
+                                    <div class="metric-item">
+                                        <span class="metric-label">DNS Daily-Cloud:</span>
+                                        <span class="metric-val" id="metric-dns">Ожидание</span>
+                                    </div>
+                                    <div class="metric-item">
+                                        <span class="metric-label">TLS Handshake:</span>
+                                        <span class="metric-val" id="metric-tls">Ожидание</span>
+                                    </div>
+                                    <div class="metric-item">
+                                        <span class="metric-label">Ответ Google API:</span>
+                                        <span class="metric-val" id="metric-api">Ожидание</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card plan-card">
+                                <h4 class="card-heading">Пошаговый план</h4>
+                                <div class="plan-content" id="action-plan-box">
+                                    <p class="plan-placeholder">Нажмите «Запустить диагностику» для анализа всех компонентов.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- TAB 2: DETAILED CHECKS -->
+                <section class="tab-view" id="view-checks">
+                    <div class="card table-card">
+                        <div class="table-wrap">
+                            <table class="diag-table">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 85px;">СТАТУС</th>
+                                        <th style="width: 140px;">КАТЕГОРИЯ</th>
+                                        <th style="width: 220px;">ПРОВЕРКА</th>
+                                        <th>РЕЗУЛЬТАТ</th>
+                                        <th style="width: 75px;">ВРЕМЯ</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="table-checks-body">
+                                    <tr>
+                                        <td colspan="5" style="text-align: center; color: var(--text-muted); padding: 30px;">
+                                            Нажмите «Запустить диагностику» для запуска проверок.
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- TAB 3: NETWORK DIAGNOSTICS -->
+                <section class="tab-view" id="view-network">
+                    <div class="card">
+                        <h3 class="card-title">Диагностика сетевого стека</h3>
+                        <div class="code-box" id="net-log-output">
+                            Запустите диагностику для сбора сетевой карты и маршрутов.
+                        </div>
+                    </div>
+                </section>
+
+                <!-- TAB 4: RAW REPORT & EXPORT -->
+                <section class="tab-view" id="view-report">
+                    <div class="card report-card">
+                        <div class="report-header">
+                            <h3 class="card-title">Технический отчет для поддержки</h3>
+                            <div class="report-actions">
+                                <button class="btn btn-secondary" id="btn-save-file">Сохранить в файл</button>
+                                <button class="btn btn-primary" id="btn-copy-log">Скопировать для Telegram</button>
+                            </div>
+                        </div>
+                        <textarea class="report-textarea" id="report-text" readonly placeholder="Нажмите «Запустить диагностику» для формирования отчета."></textarea>
+                    </div>
+                </section>
+
+                <!-- TAB 5: PATH SETTINGS -->
+                <section class="tab-view" id="view-settings">
+                    <div class="card settings-card">
+                        <h3 class="card-title">5-уровневый умный поиск путей</h3>
+                        <p class="settings-desc">Утилита автоматически находит компоненты через память запущенных процессов, реестр, ярлыки и корни дисков. При необходимости задайте путь вручную:</p>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Путь к Antigravity 2.0 (Desktop):</label>
+                            <input type="text" class="form-input mono" id="input-custom-desktop" placeholder="Автоопределение (или введите D:\Games\Antigravity)">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Путь к Antigravity IDE:</label>
+                            <input type="text" class="form-input mono" id="input-custom-ide" placeholder="Автоопределение (или введите D:\IDE\Antigravity IDE)">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Путь к Antigravity CLI (agy):</label>
+                            <input type="text" class="form-input mono" id="input-custom-cli" placeholder="Автоопределение (или введите D:\CLI\agy.exe)">
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Footer Status -->
+            <footer class="footer-bar">
+                <div class="footer-status">
+                    <span class="status-dot"></span>
+                    <span id="footer-status-text">Готов к диагностике</span>
+                </div>
+                <div class="footer-summary" id="footer-summary-counts">Всего проверок: 0</div>
+            </footer>
+        </main>
+    </div>
+
+    <!-- Neutralino.js Client -->
+    <script src="js/neutralino.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
